@@ -68,6 +68,7 @@ def get_dataset_info():
     if participants_file.exists():
         try:
             p_df = pd.read_csv(participants_file, sep="\t")
+            p_df = p_df.drop_duplicates(subset=["participant_id"]).reset_index(drop=True)
             p_df = p_df.where(pd.notnull(p_df), None)
             participants_list = p_df.to_dict(orient="records")
             for row in participants_list:

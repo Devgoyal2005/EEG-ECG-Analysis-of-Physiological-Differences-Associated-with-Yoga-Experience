@@ -54,15 +54,16 @@ This platform solves this by implementing an end-to-end, reproducible computatio
 
 ### Source & Identity
 - **Repository:** Hugging Face Hub — `alexeykashevnik/EEGMeditation`
-- **Total Published Size on Hugging Face:** ~64 GB across 26 human subjects (`sub-001` through `sub-026`).
+- **Total Published Size on Hugging Face:** ~313 GB across all 33 human participants (`sub-001` through `sub-033`).
 - **Data Standard:** BIDS (Brain Imaging Data Structure) for EEG/multimodal data.
 
 ### The Critical "MP4 Trap" (Must Never Download MP4s)
-- **The Issue:** Inside the original Hugging Face repository, each subject directory contains a `beh/` (behavioral) subdirectory filled with high-definition webcam `.mp4` video recordings of the subjects sitting still during the session. These `.mp4` files total **over 14.8 GB per batch** and are completely irrelevant to signal processing.
+- **The Issue:** Inside the original Hugging Face repository, each subject directory contains a `beh/` (behavioral) subdirectory filled with high-definition webcam `.mp4` video recordings of the subjects' face and chest during the session. These `.mp4` files total **over 260+ GB of the 313 GB repo** and are completely irrelevant to signal processing.
 - **The Fix:** The data loader enforces a strict file-extension whitelist:
-  - **Permitted:** `.vhdr`, `.vmrk`, `.eeg`, `.tsv`, `.json`, `.csv`.
+  - **Permitted (Pure Bio-Signals):** `.vhdr`, `.vmrk`, `.eeg`, `.tsv`, `.json`, `.csv` (~40–50 GB total across all 33 subjects).
   - **Blocked/Skipped:** `.mp4`, `.avi`, `.mov`, `.mkv`, `.tar`, `.zip`.
   - All existing local `.mp4` files were purged to preserve local disk space.
+  - **Duplicate Row Fix in participants.tsv:** The original dataset published on Hugging Face mistakenly duplicates entries for `sub-032` and `sub-033` (resulting in 35 rows for 33 participants). The pipeline and backend router automatically deduplicate by `participant_id` to strictly report the accurate count of 33 unique participants.
 
 ### Recording Hardware & Montages
 - **EEG Hardware:** BrainVision ActiCHamp 64-channel system with active Ag/AgCl wet electrodes.
