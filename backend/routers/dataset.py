@@ -3,6 +3,7 @@ from pathlib import Path
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Query
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
+import re
 import pandas as pd
 from utils.config import RAW_DATA_DIR, RESULTS_DIR, HF_DATASET_REPO, HF_TOKEN, BACKEND_DIR
 from pipeline.data_loader import (
@@ -94,9 +95,14 @@ def get_dataset_info():
         
         sub_key = None
         ses_key = None
-        for part in r.parts:
-            if part.startswith("sub-"): sub_key = part
-            if part.startswith("ses-"): ses_key = part
+        
+        # Extract sub-XXX and ses-YY accurately using regex
+        m_sub = re.search(r"(sub-\d+)", stem)
+        m_ses = re.search(r"(ses-\d+)", stem)
+        if m_sub:
+            sub_key = m_sub.group(1)
+        if m_ses:
+            ses_key = m_ses.group(1)
 
         if sub_key and sub_key in participants_map:
             group = participants_map[sub_key]
