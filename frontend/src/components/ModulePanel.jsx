@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Activity, Radio, Lightbulb } from 'lucide-react';
+import { Layers, Activity, Radio, Lightbulb, Compass } from 'lucide-react';
 
 export default function ModulePanel({ activeNav, onSelectNav }) {
   const commonNavs = [
@@ -37,6 +37,14 @@ export default function ModulePanel({ activeNav, onSelectNav }) {
       badge: 'Standout Signals',
       badgeColor: 'text-emerald-400 bg-emerald-950/80 border-emerald-800/60',
       icon: Activity,
+    },
+    {
+      id: 'module3',
+      title: 'Module 3',
+      subtitle: '4 Physiological States',
+      badge: 'Cognitive Shift',
+      badgeColor: 'text-amber-400 bg-amber-950/80 border-amber-800/60',
+      icon: Compass,
     },
   ];
 

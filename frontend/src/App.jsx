@@ -7,10 +7,12 @@ import ModelsTab from './tabs/ModelsTab';
 import InsightsTab from './tabs/InsightsTab';
 import OverviewTab_M2 from './tabs/module2/OverviewTab_M2';
 import ResultsTab_M2 from './tabs/module2/ResultsTab_M2';
+import OverviewTab_M3 from './tabs/module3/OverviewTab_M3';
+import ResultsTab_M3 from './tabs/module3/ResultsTab_M3';
 import { Download } from 'lucide-react';
 
 export default function App() {
-  // activeNav can be: 'signals' | 'insights' | 'module1' | 'module2'
+  // activeNav can be: 'signals' | 'insights' | 'module1' | 'module2' | 'module3'
   const [activeNav, setActiveNav] = useState('module1');
   // For modules with sub-tabs, activeTab can be 'overview' or 'models'
   const [activeTab, setActiveTab] = useState('overview');
@@ -22,20 +24,29 @@ export default function App() {
 
   const handleSelectNav = (navId) => {
     setActiveNav(navId);
-    if (navId === 'module1' || navId === 'module2') {
+    if (navId === 'module1' || navId === 'module2' || navId === 'module3') {
       setActiveTab('overview');
     }
   };
 
-  const isModule = activeNav === 'module1' || activeNav === 'module2';
+  const isModule = activeNav === 'module1' || activeNav === 'module2' || activeNav === 'module3';
+
+  const getSubTabLabel = () => {
+    if (activeNav === 'module1') return 'ML Classifiers';
+    if (activeNav === 'module2') return 'Standout Signals';
+    return 'State Dynamics';
+  };
 
   const moduleSubTabs = [
     { id: 'overview', label: 'Overview' },
-    { id: 'models', label: activeNav === 'module1' ? 'ML Classifiers' : 'Standout Signals' },
+    { id: 'models', label: getSubTabLabel() },
   ];
 
-  const excelDownloadUrl =
-    activeNav === 'module2' ? '/api/module2/download' : '/api/module1/download';
+  const getDownloadUrl = () => {
+    if (activeNav === 'module2') return '/api/module2/download';
+    if (activeNav === 'module3') return '/api/module3/download';
+    return '/api/module1/download';
+  };
 
   return (
     <div className="min-h-screen bg-darkbg text-slate-100 font-sans flex flex-col">
@@ -54,6 +65,7 @@ export default function App() {
                 {activeNav === 'insights' && 'Global: Bio-Signal Explainer & Data Scale'}
                 {activeNav === 'module1' && 'Module 1: Modality Comparison (EEG vs ECG)'}
                 {activeNav === 'module2' && 'Module 2: Expert vs Normal Differentiation'}
+                {activeNav === 'module3' && 'Module 3: 4 Physiological States Analysis'}
               </p>
             </div>
           </div>
@@ -79,7 +91,7 @@ export default function App() {
 
           {/* Excel Download button */}
           <a
-            href={excelDownloadUrl}
+            href={getDownloadUrl()}
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700/80 transition"
@@ -120,6 +132,14 @@ export default function App() {
               <>
                 {activeTab === 'overview' && <OverviewTab_M2 />}
                 {activeTab === 'models' && <ResultsTab_M2 />}
+              </>
+            )}
+
+            {/* MODULE 3 VIEWS */}
+            {activeNav === 'module3' && (
+              <>
+                {activeTab === 'overview' && <OverviewTab_M3 />}
+                {activeTab === 'models' && <ResultsTab_M3 />}
               </>
             )}
           </div>
