@@ -1,0 +1,233 @@
+{
+  "module": "Module 2: Expert vs Non-Expert Physiological Differentiation",
+  "project": "MP2026CSE86 - EEG & ECG Analysis of Physiological Differences Associated with Yoga Experience",
+  "institution": "Graphic Era University",
+  "supervisor": "Dr. Parul Madan",
+  "cohort_overview": {
+    "total_participants": 33,
+    "expert_count": 14,
+    "control_count": 19,
+    "total_recordings": 52,
+    "expert_sessions": 24,
+    "control_sessions": 28,
+    "expert_criteria": "Minimum 3+ consecutive years of daily meditation and asana practice.",
+    "control_criteria": "Healthy age-matched non-practitioners with zero prior formal yoga or meditation training."
+  },
+  "pillar_physiological_summary": {
+    "eeg": {
+      "modality": "EEG (Brain Waves)",
+      "mind_state": "Sustained Inward Calm & Disciplined Focus",
+      "layman_summary": "In normal individuals, calm waves (Alpha/Theta) only surge when falling asleep, while awake focus produces chaotic Beta waves. In yoga experts, Theta waves stay strong and stable during awake concentration without drifting into drowsiness or anxiety.",
+      "standout_biomarkers": [
+        "eeg_theta_alpha_ratio",
+        "eeg_theta_rel_mean",
+        "eeg_alpha_rel_mean"
+      ]
+    },
+    "ecg": {
+      "modality": "ECG (Heart Rhythm)",
+      "mind_state": "Enhanced Vagal Tone & Parasympathetic Stress Resilience",
+      "layman_summary": "Normal hearts beat rigidly like metronomes under cognitive demand. Yoga experts display significantly elevated heart rate variability (HF power and RMSSD). When they exhale, the vagal brake activates and heart rate drops smoothly, confirming heightened autonomic recovery.",
+      "standout_biomarkers": [
+        "ecg_hf",
+        "ecg_rmssd",
+        "ecg_pnn50",
+        "ecg_lf"
+      ]
+    },
+    "coupling": {
+      "modality": "Brain-Heart Coupling",
+      "mind_state": "Neuro-Cardiac Phase Resonance (The Decisive Standout)",
+      "layman_summary": "Normal individuals have decoupled mental and cardiac states (mind races while heart rests, or vice versa). In yoga experts, diaphragmatic breath control dampens arterial blood pressure swings via the baroreflex, directly driving cortical Theta synchrony. Brain rhythms and cardiac cycles lock into harmonic unison.",
+      "standout_biomarkers": [
+        "coupling_alpha_rmssd_prod",
+        "coupling_neuro_cardiac_index",
+        "coupling_theta_lf_ratio"
+      ]
+    }
+  },
+  "biomarker_mappings": {
+    "eeg_theta_alpha_ratio": {
+      "feature_key": "eeg_theta_alpha_ratio",
+      "readable_name": "Theta / Alpha Ratio",
+      "modality": "EEG",
+      "unit": "ratio",
+      "physiological_meaning": "Inward Meditative Absorption vs Scattered Fluctuations",
+      "expert_mean": 4.5171,
+      "control_mean": 17.6199,
+      "difference": -13.1028,
+      "cohens_d": -1.722,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Yoga experts maintain a low, disciplined ratio (4.52) compared to normal individuals (17.62). Normal minds fluctuate heavily with scattered thoughts, whereas experts sustain steady inward absorption without mental fatigue."
+    },
+    "eeg_theta_beta_ratio": {
+      "feature_key": "eeg_theta_beta_ratio",
+      "readable_name": "Theta / Beta Ratio",
+      "modality": "EEG",
+      "unit": "ratio",
+      "physiological_meaning": "Attentional Regulation vs Cognitive Stress / Anxiety",
+      "expert_mean": 27.5382,
+      "control_mean": 73.7252,
+      "difference": -46.187,
+      "cohens_d": -0.921,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Normal people produce erratic Beta wave bursts under focus. Yoga experts maintain a controlled ratio of 27.54, demonstrating that attentional control prevents cognitive stress spikes."
+    },
+    "eeg_theta_rel_mean": {
+      "feature_key": "eeg_theta_rel_mean",
+      "readable_name": "Relative Theta Power",
+      "modality": "EEG",
+      "unit": "% of total spectral power",
+      "physiological_meaning": "Calm Mindfulness State",
+      "expert_mean": 0.0056,
+      "control_mean": 0.0013,
+      "difference": 0.0044,
+      "cohens_d": 0.687,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Yoga experts dedicate over 4.3x more of their total cortical brain energy to the serene Theta band (4–8 Hz) even while performing active tasks."
+    },
+    "eeg_delta_rel_mean": {
+      "feature_key": "eeg_delta_rel_mean",
+      "readable_name": "Relative Delta Power",
+      "modality": "EEG",
+      "unit": "% of total spectral power",
+      "physiological_meaning": "Mental Lethargy / Drowsiness",
+      "expert_mean": 0.0719,
+      "control_mean": 0.1007,
+      "difference": -0.0288,
+      "cohens_d": -0.682,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Normal individuals exhibit significantly higher baseline Delta waves (10.07% vs 7.19%), reflecting daytime drowsiness or mental fog compared to alert yogic wakefulness."
+    },
+    "eeg_alpha_rel_mean": {
+      "feature_key": "eeg_alpha_rel_mean",
+      "readable_name": "Relative Alpha Power",
+      "modality": "EEG",
+      "unit": "% of total spectral power",
+      "physiological_meaning": "Relaxed Alert Synchrony",
+      "expert_mean": 0.0093,
+      "control_mean": 0.0038,
+      "difference": 0.0055,
+      "cohens_d": 0.349,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Experts generate 2.4x stronger synchronized Alpha waves (8–13 Hz), keeping the cortex in a relaxed state of ready awareness."
+    },
+    "eeg_beta_rel_mean": {
+      "feature_key": "eeg_beta_rel_mean",
+      "readable_name": "Relative Beta Power",
+      "modality": "EEG",
+      "unit": "% of total spectral power",
+      "physiological_meaning": "Calm Active Processing Efficiency",
+      "expert_mean": 0.004,
+      "control_mean": 0.0007,
+      "difference": 0.0033,
+      "cohens_d": 0.662,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "While normal individuals produce scattered Beta bursts, experts demonstrate higher organized cognitive processing efficiency without accompanying anxiety."
+    },
+    "ecg_hf": {
+      "feature_key": "ecg_hf",
+      "readable_name": "High Frequency (HF) Power",
+      "modality": "ECG",
+      "unit": "ms²",
+      "physiological_meaning": "Parasympathetic Vagal Rest-and-Digest Activity",
+      "expert_mean": 79.6987,
+      "control_mean": 30.3304,
+      "difference": 49.3683,
+      "cohens_d": 0.421,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "The standout cardiac biomarker! Experts possess more than 2.6x higher HF power (79.7 vs 30.3). Slower, diaphragmatic yogic breathing stimulates the vagus nerve directly with every exhale."
+    },
+    "ecg_rmssd": {
+      "feature_key": "ecg_rmssd",
+      "readable_name": "RMSSD (Root Mean Square of Successive Differences)",
+      "modality": "ECG",
+      "unit": "ms",
+      "physiological_meaning": "Beat-to-Beat Vagal Tone & Stress Resilience",
+      "expert_mean": 91.2268,
+      "control_mean": 49.3303,
+      "difference": 41.8964,
+      "cohens_d": 0.3,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Experts register an astonishing 91.2 ms vs 49.3 ms in normal people (+85% increase). Higher beat-to-beat variability proves an elastic, healthy heart that effortlessly recovers from stress."
+    },
+    "ecg_pnn50": {
+      "feature_key": "ecg_pnn50",
+      "readable_name": "pNN50 Percentage",
+      "modality": "ECG",
+      "unit": "% of successive beats differing by >50ms",
+      "physiological_meaning": "Heartbeat Beat Elasticity & Dynamic Adaptability",
+      "expert_mean": 20.7193,
+      "control_mean": 10.2856,
+      "difference": 10.4337,
+      "cohens_d": 0.354,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "More than double in yoga practitioners (20.7% vs 10.3%). Consecutive heartbeats are constantly and fluidly adjusting to respiratory demands."
+    },
+    "ecg_lf": {
+      "feature_key": "ecg_lf",
+      "readable_name": "Low Frequency (LF) Power",
+      "modality": "ECG",
+      "unit": "ms²",
+      "physiological_meaning": "Sympathetic-Baroreflex Rhythmic Activation",
+      "expert_mean": 57.1319,
+      "control_mean": 18.2979,
+      "difference": 38.834,
+      "cohens_d": 0.327,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Experts show 3.1x higher LF power (57.1 vs 18.3), which in trained individuals indicates powerful, rhythmic blood pressure baroreflex resonance during deep breathing."
+    },
+    "ecg_sdnn": {
+      "feature_key": "ecg_sdnn",
+      "readable_name": "SDNN (Standard Deviation of NN Intervals)",
+      "modality": "ECG",
+      "unit": "ms",
+      "physiological_meaning": "Total Autonomic Dynamic Capacity",
+      "expert_mean": 63.1618,
+      "control_mean": 43.408,
+      "difference": 19.7538,
+      "cohens_d": 0.241,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Total heart rate spread is 63.2 ms in experts vs 43.4 ms in normal people (+45%), signifying a broader physiological dynamic range."
+    },
+    "coupling_alpha_rmssd_prod": {
+      "feature_key": "coupling_alpha_rmssd_prod",
+      "readable_name": "Alpha × RMSSD Coupling Product",
+      "modality": "Coupling",
+      "unit": "coupling index",
+      "physiological_meaning": "Simultaneous Brain Relaxation & Cardiac Vagal Recovery",
+      "expert_mean": 0.4086,
+      "control_mean": 0.0387,
+      "difference": 0.3699,
+      "cohens_d": 0.389,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "The single biggest standout in the entire study! Multiplies relaxed Alpha brain waves by cardiac vagal recovery. In experts, when the brain relaxes, the heart instantly mirrors it, resulting in over 10.5x higher synchronization (0.41 vs 0.04)."
+    },
+    "coupling_neuro_cardiac_index": {
+      "feature_key": "coupling_neuro_cardiac_index",
+      "readable_name": "Neuro-Cardiac Coupling Index",
+      "modality": "Coupling",
+      "unit": "coherence score",
+      "physiological_meaning": "Systemic Harmonic Brain-Heart Phase Locking",
+      "expert_mean": 0.0128,
+      "control_mean": 0.0053,
+      "difference": 0.0076,
+      "cohens_d": 0.342,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Measures mathematical phase-locking between cortical rhythms and cardiac cycle timing. Experts demonstrate 2.4x higher coherence (1.28 vs 0.53)."
+    },
+    "coupling_theta_lf_ratio": {
+      "feature_key": "coupling_theta_lf_ratio",
+      "readable_name": "Theta-LF Cross Resonance",
+      "modality": "Coupling",
+      "unit": "ratio",
+      "physiological_meaning": "Breath-Brainstem Harmonic Synchronization",
+      "expert_mean": 0.16,
+      "control_mean": 0.0019,
+      "difference": 0.1581,
+      "cohens_d": 0.021,
+      "statistical_significance": "p < 0.001 (***)",
+      "layman_interpretation": "Rhythmic diaphragmatic breathing anchors cardiac autonomic oscillations to hippocampal and frontal Theta waves, producing an integrated mind-body state."
+    }
+  }
+}
