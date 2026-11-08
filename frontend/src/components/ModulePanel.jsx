@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Activity, Radio, Lightbulb, Compass } from 'lucide-react';
+import { Layers, Activity, Radio, Lightbulb, Compass, Award } from 'lucide-react';
 
 export default function ModulePanel({ activeNav, onSelectNav }) {
   const commonNavs = [
@@ -45,6 +45,14 @@ export default function ModulePanel({ activeNav, onSelectNav }) {
       badge: 'Cognitive Shift',
       badgeColor: 'text-amber-400 bg-amber-950/80 border-amber-800/60',
       icon: Compass,
+    },
+    {
+      id: 'module4',
+      title: 'Module 4',
+      subtitle: 'ML Benchmark & Clustering',
+      badge: 'Capstone',
+      badgeColor: 'text-purple-400 bg-purple-950/80 border-purple-800/60',
+      icon: Award,
     },
   ];
 

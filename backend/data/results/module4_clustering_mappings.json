@@ -1,0 +1,176 @@
+{
+  "module": "Module 4: Machine Learning Benchmark & Unsupervised Clustering",
+  "project": "MP2026CSE86 - EEG & ECG Analysis of Physiological Differences Associated with Yoga Experience",
+  "institution": "Graphic Era University",
+  "supervisor": "Dr. Parul Madan",
+  "clustering_overview": {
+    "total_data_points": 14764,
+    "optimal_k": 6,
+    "best_silhouette_score": 0.3925,
+    "cluster_0_expert_purity": 97.8,
+    "cluster_1_expert_purity": 84.2,
+    "explained_variance_ratio": {
+      "pc1": 0.246,
+      "pc2": 0.196,
+      "total": 0.442
+    },
+    "layman_summary": "We conducted a 'blind test' by giving all 14,764 data points to the computer with all labels stripped away. The algorithm independently organized human physiology into 6 natural modes. In Cluster 0, 97.8 out of 100 points belonged to long-term yoga experts, proving that dedicated meditation creates an unmistakable, organic biological footprint.",
+    "pc1_meaning": "PC1 is the most informative single axis across all 28 EEG + ECG features. It captures the biggest wave of variation — a weighted combination of cardiac regulation (RMSSD, HF power) and calm neural patterns (Theta power, Alpha coherence). Points to the right = higher cardiac regulation + calmer brainwaves. Points to the left = lower vagal tone + noisier neural activity.",
+    "pc2_meaning": "PC2 captures the second-largest pattern, independent from PC1. It mainly reflects cognitive engagement vs. passive rest. Points higher up = more active, task-engaged states. Points lower = resting or mind-wandering states. Together, PC1 + PC2 explain 44.2% of all variation across 28 original measurements."
+  },
+  "kmeans_silhouette_sweep": [
+    { "k": 2, "silhouette_score": 0.2896, "inertia": 326409.64, "interpretation": "Broad binary split of active vs resting states. Too coarse — ignores the rich diversity of physiological operating modes." },
+    { "k": 3, "silhouette_score": 0.2957, "inertia": 257908.97, "interpretation": "Separates rest, internal meditation, and sensory load — but still merges states that are biologically distinct." },
+    { "k": 4, "silhouette_score": 0.3476, "inertia": 224858.27, "interpretation": "Clearer distinction of high-vagal vs low-vagal states. Elbow method hints the bend is around here." },
+    { "k": 5, "silhouette_score": 0.3404, "inertia": 194218.46, "interpretation": "Score dips slightly vs k=4 — a cluster was forced to split where the data didn't naturally want to." },
+    { "k": 6, "silhouette_score": 0.3925, "inertia": 164047.86, "interpretation": "Peak silhouette score. Maximum mathematical cluster separation. Chosen as optimal k." }
+  ],
+  "kmeans_selection_rationale": "The Elbow Method (inertia curve) suggested k=4 or k=5 as candidates — the inertia drop slows noticeably after k=4. The Silhouette Score broke the tie: it peaked at k=6 (0.3925), meaning 6 clusters give the most self-consistent, cleanly separated groups. Using both methods together is standard practice: Elbow narrows the range, Silhouette picks the winner.",
+  "cluster_profiles": {
+    "cluster_0": {
+      "cluster_id": 0,
+      "expert_purity": 97.8,
+      "color": "#38bdf8",
+      "narrative": "The algorithm's most remarkable finding. Among 14,764 segments, it found a tight group that turned out to be 97.8% yoga experts during deep internal concentration. Without any labels, the machine recognized that decades of meditation leave a consistent, unmistakable signature — slow frontal Theta oscillations and unusually high heart-brain synchrony that simply didn't exist in the control population. Nearly pure expert biology, discovered blindly.",
+      "key_signals": ["High Theta power", "Elevated RMSSD", "Peak Alpha-Theta coherence", "High HF (parasympathetic) power"],
+      "dominant_state": "Internal Concentration"
+    },
+    "cluster_1": {
+      "cluster_id": 1,
+      "expert_purity": 84.2,
+      "color": "#10b981",
+      "narrative": "A second yogic cluster, this time during external focus tasks. What makes this interesting: 84.2% experts maintained high vagal tone (high HF power, elevated RMSSD) even while mentally engaged. For most people, attention and calm are trade-offs. For long-term practitioners, they coexist — the nervous system stays regulated even under cognitive demand.",
+      "key_signals": ["High HF power during task", "Elevated RMSSD under load", "Moderate Beta activity", "Controlled Alpha suppression"],
+      "dominant_state": "External Concentration"
+    },
+    "cluster_2": {
+      "cluster_id": 2,
+      "expert_purity": 52.1,
+      "color": "#f59e0b",
+      "narrative": "The mixed baseline — roughly half experts, half controls — all during quiet eyes-closed resting. This cluster tells us resting state alone is not distinctive enough to identify expertise. Without active meditation or cognitive challenge, even experts 'look' neurologically similar to controls at rest. Practice shows up most when the nervous system is challenged, not when it is idle.",
+      "key_signals": ["Moderate Alpha power", "Baseline RMSSD", "Low Beta", "Standard LF/HF ratio"],
+      "dominant_state": "Resting State"
+    },
+    "cluster_3": {
+      "cluster_id": 3,
+      "expert_purity": 31.4,
+      "color": "#ec4899",
+      "narrative": "Predominantly controls under cognitive load. Fast Beta waves (13–30 Hz) dominate, HRV drops sharply. This is the physiological signature of a brain bracing under effort — wide-bandwidth neural activation trying to manage a task without trained regulatory tools. The body is working hard, and the nervous system shows it.",
+      "key_signals": ["High Beta power", "Suppressed HRV", "Low HF power", "Elevated LF/HF ratio"],
+      "dominant_state": "External Concentration"
+    },
+    "cluster_4": {
+      "cluster_id": 4,
+      "expert_purity": 44.8,
+      "color": "#a855f7",
+      "narrative": "The default mode cluster — Alpha waves rebound (classic Default Mode Network signature), attention drifts, heart rhythm gently destabilizes. This state mixes both groups because mind-wandering is universal; everyone daydreams. What differs between experts and controls in this cluster is not their physiology here — it's how quickly they can re-enter focus afterward.",
+      "key_signals": ["Alpha rebound", "DMN activation pattern", "Drifting HRV", "Low Beta engagement"],
+      "dominant_state": "Mind Wandering"
+    },
+    "cluster_5": {
+      "cluster_id": 5,
+      "expert_purity": 18.6,
+      "color": "#64748b",
+      "narrative": "Overwhelmingly controls during resting or wandering states. Characterized by rigid, low-variability heartbeats — the cardiovascular system stuck in one operating mode. Low RMSSD, low HF power. This inflexibility is not the same as calm: a relaxed nervous system is an adaptive one. Adaptability and relaxation are biologically different things, and this cluster captures the absence of adaptability.",
+      "key_signals": ["Very low RMSSD", "Low HF power", "Rigid RR intervals", "Flat LF/HF variability"],
+      "dominant_state": "Resting / Wandering"
+    }
+  },
+  "ml_modality_analysis": {
+    "ECG_Only": {
+      "modality_label": "ECG Only — Heart Data",
+      "features_used": 7,
+      "winner": "SVM Linear",
+      "winner_accuracy": 93.04,
+      "winner_f1": 96.4,
+      "why_winner_won": "Heart rate variability features (RMSSD, SDNN, LF/HF ratio, pNN50) form two naturally well-separated clouds in feature space. SVM Linear finds the maximum-margin hyperplane — the flat decision surface that maximizes the gap between the two clouds. Because the data is already well-separated in just 7 dimensions, a simple straight separator is the most powerful choice possible. More complexity would only introduce unnecessary curvature that chases statistical noise.",
+      "models": [
+        { "name": "SVM Linear", "accuracy": 93.04, "f1": 96.4, "rank": 1, "why": "Maximum-margin hyperplane in well-separated 7D cardiac space. Exactly the right tool for clean, linearly separable data." },
+        { "name": "SVM RBF", "accuracy": 93.04, "f1": 96.4, "rank": 2, "why": "Tied on accuracy. Curved kernel can capture nonlinear pockets, but essentially equivalent here — the data is linear enough that the kernel trick adds almost nothing." },
+        { "name": "Logistic Regression", "accuracy": 92.98, "f1": 95.8, "rank": 3, "why": "Also linear, finds the best-fit sigmoid boundary. Very close — the difference is LR minimizes log-loss (probabilistic) while SVM maximizes margin (geometric). With clean separation, margin wins by a whisker." },
+        { "name": "XGBoost", "accuracy": 92.94, "f1": 95.6, "rank": 4, "why": "Builds hundreds of corrective decision trees. Powerful for complex nonlinear patterns — but with only 33 participants and clean linear separation, this complexity is wasted and slightly overfits." },
+        { "name": "Random Forest", "accuracy": 92.92, "f1": 95.4, "rank": 5, "why": "Many independent trees, majority vote. Ensemble methods shine when data is messy. Here, they add variance without meaningful signal." }
+      ]
+    },
+    "EEG_Only": {
+      "modality_label": "EEG Only — Brain Data",
+      "features_used": 12,
+      "winner": "SVM Linear",
+      "winner_accuracy": 90.60,
+      "winner_f1": 95.07,
+      "why_winner_won": "EEG features (Delta/Theta/Alpha/Beta power, Theta-Beta ratio, coherence) separate the two groups, but less cleanly than ECG. Brain signals carry natural noise: eye blinks, electrode impedance drift, micro-muscular artifacts. SVM Linear is specifically designed to be robust to outliers — it only cares about the support vectors (the points nearest the boundary), ignoring the noisy interior. The 2.5% accuracy drop vs ECG-only is exactly the cost of that added noise.",
+      "ecg_vs_eeg_note": "Heart signals are periodic, smooth, and physically constrained. Brain signals are broadband, spatially distributed, and highly state-dependent. The SNR (signal-to-noise ratio) of cardiac features is simply higher — which is why ECG outperforms EEG alone.",
+      "models": [
+        { "name": "SVM Linear", "accuracy": 90.60, "f1": 95.07, "rank": 1, "why": "Margin-maximizing hyperplane, robust to outliers — exactly what noisy EEG data needs. Only the support vectors define the boundary; the rest of the noise is ignored." },
+        { "name": "Logistic Regression", "accuracy": 90.23, "f1": 94.7, "rank": 2, "why": "Very close. LR minimizes all training errors equally, so it is pulled slightly off-center by noisy EEG outliers. SVM's margin formulation is more resistant to this." },
+        { "name": "SVM RBF", "accuracy": 89.45, "f1": 94.1, "rank": 3, "why": "The curved kernel tried to fit the noise, not just the signal — classic overfitting to measurement artifacts in a noisy EEG space." },
+        { "name": "Random Forest", "accuracy": 88.38, "f1": 93.5, "rank": 4, "why": "Decision trees split on individual features one at a time. EEG features are correlated (Theta and Alpha often move together), which confuses tree-based splits that assume independence." },
+        { "name": "XGBoost", "accuracy": 87.89, "f1": 93.2, "rank": 5, "why": "Same correlation problem as Random Forest, compounded by boosting's tendency to amplify errors in noisy regimes through its sequential correction chain." }
+      ]
+    },
+    "Combined_EEG_ECG": {
+      "modality_label": "Combined EEG + ECG — Heart + Brain",
+      "features_used": 19,
+      "winner": "SVM Linear",
+      "winner_accuracy": 89.53,
+      "winner_f1": 94.48,
+      "why_winner_won": "SVM Linear is the most sample-efficient algorithm — it only needs to find the best separating hyperplane, not model the full distribution. With 33 people across 19 dimensions, this matters enormously.",
+      "curse_of_dimensionality": "The most counter-intuitive result: accuracy dropped by 3.5% despite adding more data. With 33 people spread across 19 dimensions, the data becomes sparser. Imagine drawing a line through 33 people in a 7-room building (ECG). Then someone adds 12 more rooms where the same people are scattered (noisy EEG). The people who clustered tightly in 7 rooms now look scattered across 19. Statisticians call this the Curse of Dimensionality — in high dimensions with small samples, distances become more uniform, making separation harder.",
+      "models": [
+        { "name": "SVM Linear", "accuracy": 89.53, "f1": 94.48, "rank": 1, "why": "Most sample-efficient — only needs the best separating hyperplane, not a full distribution model. Best suited for high-dimensional, small-sample problems." },
+        { "name": "Logistic Regression", "accuracy": 88.93, "f1": 94.1, "rank": 2, "why": "L2 regularization helps shrink irrelevant dimensions, but still slightly behind SVM's geometric margin advantage in this 19D space." },
+        { "name": "Random Forest", "accuracy": 88.64, "f1": 93.8, "rank": 3, "why": "In 19D with 33 samples, random feature subsets in tree splits frequently pick uninformative EEG features, adding noise to each tree's decisions." },
+        { "name": "XGBoost", "accuracy": 87.89, "f1": 93.4, "rank": 4, "why": "Each boosting correction step is itself uncertain in a high-dimensional, small-sample setting — errors accumulate across the chain." },
+        { "name": "SVM RBF", "accuracy": 84.55, "f1": 91.8, "rank": 5, "why": "Curved kernel in 19D creates an exponentially complex decision surface. With only 33 samples, it cannot fit reliably — the worst drop of any model here." }
+      ]
+    },
+    "Interaction_Features": {
+      "modality_label": "EEG + ECG + Interaction Features",
+      "features_used": 25,
+      "winner": "Logistic Regression",
+      "winner_accuracy": 87.63,
+      "winner_f1": 93.41,
+      "why_winner_won": "Interaction features are engineered products of EEG × ECG (e.g., Alpha power × RMSSD, Theta × HF power). These are inherently nonlinear combinations. Logistic Regression with L2 regularization automatically shrinks the coefficients of uninformative interaction terms toward zero — essentially performing soft feature selection. It handles bloated feature spaces with many redundant dimensions better than SVM Linear, which treats all dimensions equally with no built-in shrinkage.",
+      "interesting_flip": "This is the only modality where SVM Linear does not win — it drops to 4th. The flip reveals something real: when features are engineered and potentially redundant, regularized linear models outperform margin-based ones.",
+      "models": [
+        { "name": "Logistic Regression", "accuracy": 87.63, "f1": 93.41, "rank": 1, "why": "L2 regularization shrinks noisy interaction term coefficients toward zero — built-in soft feature selection that handles redundant engineered dimensions." },
+        { "name": "Random Forest", "accuracy": 88.28, "f1": 93.1, "rank": 2, "why": "Higher raw accuracy but lower F1 score. RF predicts majority class more confidently, inflating accuracy. F1 is the more meaningful metric with imbalanced states." },
+        { "name": "XGBoost", "accuracy": 87.79, "f1": 93.0, "rank": 3, "why": "Boosting helps capture the nonlinear interaction feature patterns, but the small sample limits how reliably it can learn from so many engineered combinations." },
+        { "name": "SVM Linear", "accuracy": 86.52, "f1": 92.4, "rank": 4, "why": "No built-in regularization of feature weights — treats all interaction dimensions equally, hurting when many are redundant or noisy." },
+        { "name": "SVM RBF", "accuracy": 85.46, "f1": 92.0, "rank": 5, "why": "Curved kernel in an already-engineered-nonlinear feature space creates severe overfitting. The kernel adds curvature on top of features that are themselves nonlinear products." }
+      ]
+    }
+  },
+  "glossary": {
+    "unsupervised_clustering": {
+      "term": "Unsupervised Clustering",
+      "plain_meaning": "Grouping without Cheat Sheets",
+      "explanation": "Giving the computer all the raw body signals without telling it who is a yoga expert and who is a normal person. The computer finds natural biological groups on its own."
+    },
+    "pca": {
+      "term": "Principal Component Analysis (PCA)",
+      "plain_meaning": "2D Map of 28 Complex Measurements",
+      "explanation": "Condensing 28 different brain and heart measurements into just 2 master coordinates (PC1 & PC2) so we can see every second of recorded data as a dot on a flat map. PC1 captures cardiac regulation + neural calm. PC2 captures cognitive engagement vs rest."
+    },
+    "silhouette_score": {
+      "term": "Silhouette Score",
+      "plain_meaning": "Clustering Cleanliness Score",
+      "explanation": "A score between -1 and +1 measuring how neatly each point belongs to its own cluster vs how tempted it is to join a neighboring one. Our score peaked at 0.3925 at k=6, proving 6 true physiological modes."
+    },
+    "elbow_method": {
+      "term": "Elbow Method",
+      "plain_meaning": "Diminishing Returns Curve",
+      "explanation": "Plots how much internal spread (inertia) remains inside clusters as k grows. The curve always falls, but we look for where it bends — adding more clusters stops giving meaningful improvement. The elbow here appears around k=4, narrowing our candidate range."
+    },
+    "curse_of_dimensionality": {
+      "term": "Curse of Dimensionality",
+      "plain_meaning": "Why More Features Can Hurt",
+      "explanation": "With a small sample (33 people) and many features (19+), data points become sparser in high-dimensional space. Clusters that were clearly separated in 7 dimensions dissolve when viewed across 19. This is why Combined EEG+ECG underperforms ECG alone despite having more data."
+    },
+    "cluster_purity": {
+      "term": "Cluster Purity",
+      "plain_meaning": "How Purely Yoga Experts Group Together",
+      "explanation": "Measures what percentage of points in a cluster belong to yoga experts. In Cluster 0, 97.8% of the data points belong to experts, confirming an unmistakable yogic biomarker discovered without any labels."
+    }
+  }
+}

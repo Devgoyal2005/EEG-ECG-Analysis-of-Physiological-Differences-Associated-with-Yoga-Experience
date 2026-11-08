@@ -9,10 +9,12 @@ import OverviewTab_M2 from './tabs/module2/OverviewTab_M2';
 import ResultsTab_M2 from './tabs/module2/ResultsTab_M2';
 import OverviewTab_M3 from './tabs/module3/OverviewTab_M3';
 import ResultsTab_M3 from './tabs/module3/ResultsTab_M3';
+import OverviewTab_M4 from './tabs/module4/OverviewTab_M4';
+import ResultsTab_M4 from './tabs/module4/ResultsTab_M4';
 import { Download } from 'lucide-react';
 
 export default function App() {
-  // activeNav can be: 'signals' | 'insights' | 'module1' | 'module2' | 'module3'
+  // activeNav can be: 'signals' | 'insights' | 'module1' | 'module2' | 'module3' | 'module4'
   const [activeNav, setActiveNav] = useState('module1');
   // For modules with sub-tabs, activeTab can be 'overview' or 'models'
   const [activeTab, setActiveTab] = useState('overview');
@@ -24,17 +26,18 @@ export default function App() {
 
   const handleSelectNav = (navId) => {
     setActiveNav(navId);
-    if (navId === 'module1' || navId === 'module2' || navId === 'module3') {
+    if (navId.startsWith('module')) {
       setActiveTab('overview');
     }
   };
 
-  const isModule = activeNav === 'module1' || activeNav === 'module2' || activeNav === 'module3';
+  const isModule = activeNav.startsWith('module');
 
   const getSubTabLabel = () => {
     if (activeNav === 'module1') return 'ML Classifiers';
     if (activeNav === 'module2') return 'Standout Signals';
-    return 'State Dynamics';
+    if (activeNav === 'module3') return 'State Dynamics';
+    return 'Clusters & Leaderboard';
   };
 
   const moduleSubTabs = [
@@ -45,6 +48,7 @@ export default function App() {
   const getDownloadUrl = () => {
     if (activeNav === 'module2') return '/api/module2/download';
     if (activeNav === 'module3') return '/api/module3/download';
+    if (activeNav === 'module4') return '/api/module4/download';
     return '/api/module1/download';
   };
 
@@ -66,6 +70,7 @@ export default function App() {
                 {activeNav === 'module1' && 'Module 1: Modality Comparison (EEG vs ECG)'}
                 {activeNav === 'module2' && 'Module 2: Expert vs Normal Differentiation'}
                 {activeNav === 'module3' && 'Module 3: 4 Physiological States Analysis'}
+                {activeNav === 'module4' && 'Module 4: ML Benchmark & Unsupervised Clustering'}
               </p>
             </div>
           </div>
@@ -140,6 +145,14 @@ export default function App() {
               <>
                 {activeTab === 'overview' && <OverviewTab_M3 />}
                 {activeTab === 'models' && <ResultsTab_M3 />}
+              </>
+            )}
+
+            {/* MODULE 4 VIEWS */}
+            {activeNav === 'module4' && (
+              <>
+                {activeTab === 'overview' && <OverviewTab_M4 />}
+                {activeTab === 'models' && <ResultsTab_M4 />}
               </>
             )}
           </div>
